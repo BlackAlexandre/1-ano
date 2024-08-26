@@ -36,7 +36,7 @@ p {
     border-radius: 10px; /* Borda arredondada do botão */
     transition: background-color 0.3s ease, transform 0.2s ease;
     display: inline-block; /* Faz o botão se comportar como um bloco inline */
-    transform: scale(2.05); /* Aumenta o tamanho do botão um pouco quando o mouse passa por cima */
+    transform: scale(1.05); /* Aumenta o tamanho do botão um pouco quando o mouse passa por cima */
 }
 }
 
