@@ -1,0 +1,47 @@
+/* Estilo para o fundo do corpo da página */
+body {
+    background: linear-gradient(to bottom, #6a0dad, #87cefa);
+    margin: 0; /* Remove a margem padrão do corpo */
+    height: 100vh; /* Garante que o fundo cubra toda a altura da viewport */
+    display: flex;
+    flex-direction: column; /* Alinha os itens na coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 8vh;
+}
+
+h2 {
+    text-align: center;
+    font-size: 3vh;
+}
+
+p {
+    text-align: center;
+    font-size: 2vh;
+}
+
+/* Estilo para o botão */
+.botao {
+    padding: 15px 30px; /* Espaçamento interno do botão */
+    font-size: 20px; /* Tamanho da fonte do botão */
+    color: #fff;
+    background-color: #6a0dad; /* Cor de fundo roxa */
+    text-align: center;
+    text-decoration: none; /* Remove o sublinhado */
+    border-radius: 10px; /* Borda arredondada do botão */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Faz o botão se comportar como um bloco inline */
+    transform: scale(2.05); /* Aumenta o tamanho do botão um pouco quando o mouse passa por cima */
+}
+}
+
+.botao:hover {
+    background-color: #5a0a9d; /* Cor de fundo roxa mais escura para hover */
+ 
+}
+    

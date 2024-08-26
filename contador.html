@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Tempo de Namoro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="v1">
+        <video  autoplay muted loop>
+            <source src="WhatsApp Video 2024-08-26 at 12.52.11.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+
+    </div>
+
+
+    <p id="contador">Carregando...</p>
+
+    <script>
+
+const dataInicio = new Date('2023-10-02T00:00:00');
+
+function atualizarContador() {
+    const agora = new Date();
+    const tempoPassado = agora - dataInicio;
+
+    const segundosTotais = Math.floor(tempoPassado / 1000);
+    const segundos = segundosTotais % 60;
+    const minutosTotais = Math.floor(segundosTotais / 60);
+    const minutos = minutosTotais % 60;
+    const horasTotais = Math.floor(minutosTotais / 60);
+    const horas = horasTotais % 24;
+    const diasTotais = Math.floor(horasTotais / 24);
+    const anos = Math.floor(diasTotais / 365);
+
+    // Calculando os dias no mês atual
+    const inicioDoMesAtual = new Date(agora.getFullYear(), agora.getMonth(), 1);
+    const diasNoMesAtual = Math.floor((agora - inicioDoMesAtual) / (1000 * 60 * 60 * 24));
+
+    // Calculando os meses e dias desde o início
+    const dias = diasTotais % 365;
+    const meses = Math.floor(dias / 30);
+
+    document.getElementById('contador').textContent = 
+        `${anos} anos, ${meses} meses, ${diasNoMesAtual} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+}
+
+setInterval(atualizarContador, 1000);
+atualizarContador();
+
+    </script>
+</body>
+</html>

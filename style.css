@@ -1,0 +1,35 @@
+body {
+    background: linear-gradient(to bottom, #6a0dad, #87cefa);
+    margin: 0; /* Remove a margem padrão do corpo */
+    height: 100vh; /* Garante que o fundo cubra toda a altura da viewport */
+    display: flex;
+    flex-direction: column; /* Alinha os itens na coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    font-family: Arial, sans-serif;
+}
+div video{
+    width: 40vh;
+}
+
+/* Estilos para centralizar o vídeo */
+#v1 {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+}
+
+video {
+    max-width: 100%; /* Garante que o vídeo não ultrapasse a largura do contêiner */
+    height: auto;    /* Mantém a proporção original do vídeo */
+    border: 10px dashed rgb(116, 33, 116);
+}
+
+/* Estilos para o contador */
+#contador {
+    font-size: 5.5vh; /* Ajuste o tamanho do texto conforme necessário */
+    font-weight: bold; /* Torna o texto mais negrito (opcional) */
+    color: #333; /* Define a cor do texto, você pode escolher qualquer cor */
+    text-align: center; /* Centraliza o texto horizontalmente no contêiner pai */
+    margin-top: 20px; /* Espaço acima do contador, ajuste conforme necessário */
+}
+
