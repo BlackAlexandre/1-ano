@@ -1,15 +1,6 @@
-/* Estilo para o fundo do corpo da página */
-body {
-    background: linear-gradient(to bottom, #6a0dad, #87cefa);
-    margin: 0; /* Remove a margem padrão do corpo */
-    height: 100vh; /* Garante que o fundo cubra toda a altura da viewport */
-    display: flex;
-    flex-direction: column; /* Alinha os itens na coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    font-family: Arial, sans-serif;
+body{
+    background-color: #6a0dad;
 }
-
 h1 {
     text-align: center;
     font-size: 8vh;
@@ -26,22 +17,23 @@ p {
 }
 
 /* Estilo para o botão */
+
+
+
+    
+/* Estilo básico para o botão */
 .botao {
-    padding: 15px 30px; /* Espaçamento interno do botão */
-    font-size: 20px; /* Tamanho da fonte do botão */
-    color: #fff;
-    background-color: #6a0dad; /* Cor de fundo roxa */
+    display: inline-block;
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    font-size: 3vh; /* Tamanho da fonte do botão */
+    color: #fff; /* Cor do texto */
+    background-color: #007bff; /* Cor de fundo azul */
     text-align: center;
     text-decoration: none; /* Remove o sublinhado */
-    border-radius: 10px; /* Borda arredondada do botão */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    display: inline-block; /* Faz o botão se comportar como um bloco inline */
-    transform: scale(1.05); /* Aumenta o tamanho do botão um pouco quando o mouse passa por cima */
-}
+    border-radius: 8px; /* Borda arredondada */
+    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
 }
 
 .botao:hover {
-    background-color: #5a0a9d; /* Cor de fundo roxa mais escura para hover */
- 
+    background-color: #0056b3; /* Cor de fundo azul mais escura para hover */
 }
-    
