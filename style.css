@@ -1,6 +1,9 @@
 body {
     background-color: #a373c5;
 
+
+
+
 }
 div video{
     width: 40vh;
@@ -34,4 +37,8 @@ video {
 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#audio-player {
+    display: none; /* Oculta o player de áudio padrão */
 }
