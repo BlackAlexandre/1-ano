@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, #6a0dad, #87cefa);
+    background-color: #a373c5;
     margin: 0; /* Remove a margem padrão do corpo */
     height: 100vh; /* Garante que o fundo cubra toda a altura da viewport */
     display: flex;
@@ -33,3 +33,11 @@ video {
     margin-top: 20px; /* Espaço acima do contador, ajuste conforme necessário */
 }
 
+#mensagem {
+    margin: 20px;
+    padding: 20px;
+    font-size: 40px;
+
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
