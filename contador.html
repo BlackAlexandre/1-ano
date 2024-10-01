@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de Tempo de Namoro</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             background-color: #a373c5;
@@ -127,8 +126,10 @@
                 document.getElementById('contador').textContent = 
                     `${mesesCorrigidos} mês${mesesCorrigidos !== 1 ? 'es' : ''}, ${diasCorrigidos} dia${diasCorrigidos !== 1 ? 's' : ''}, ${horasCorrigidas} hora${horasCorrigidas !== 1 ? 's' : ''}, ${minutosCorrigidos} minuto${minutosCorrigidos !== 1 ? 's' : ''} e ${segundosCorrigidos} segundo${segundosCorrigidos !== 1 ? 's' : ''}`;
             } else {
+                const mesesAposAno = mesesCorrigidos - 12;
                 document.getElementById('contador').textContent = 
-                    `1 ano, 0 meses, 0 dias, 0 horas, 0 minutos e 0 segundos`;
+                    `1 ano, ${mesesAposAno} mês${mesesAposAno !== 1 ? 'es' : ''}, ${diasCorrigidos} dia${diasCorrigidos !== 1 ? 's' : ''}, ${horasCorrigidas} hora${horasCorrigidas !== 1 ? 's' : ''}, ${minutosCorrigidos} minuto${minutosCorrigidos !== 1 ? 's' : ''} e ${segundosCorrigidos} segundo${segundosCorrigidos !== 1 ? 's' : ''}`;
+                
                 if (!firstYear) {
                     firstYear = true;
                     fireworksEnabled = true;
@@ -147,7 +148,7 @@
 
         function atualizarMensagem() {
             const mensagemDiv = document.getElementById('mensagem');
-            mensagemDiv.innerHTML = `
+            mensagemDiv.innerHTML = ` 
                 <h1>Estamos a 1 ano juntos!</h1>
                 <p>O tempo passou tão rápido, e cada momento ao seu lado tem sido uma alegria. A cada dia, nosso amor se fortalece e nos torna mais próximos. Vamos continuar criando memórias inesquecíveis juntos!</p>
             `;
