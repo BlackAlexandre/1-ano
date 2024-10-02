@@ -5,29 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de Tempo de Namoro</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #a373c5;
+            overflow: hidden;
+        }
+        div video {
+            width: 40vh;
+        }
+        #v1 {
+            display: flex;
+            justify-content: center;
+        }
+        video {
+            max-width: 100%;
+            height: auto;
+            border: 10px dashed rgb(116, 33, 116);
+        }
+        #contador {
+            font-size: 5.5vh;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #mensagem {
+            margin: 20px;
+            padding: 20px;
+            font-size: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #audio-player {
+            display: none;
+        }
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
     <div id="v1">
-        <video  autoplay muted loop>
+        <video autoplay muted loop>
             <source src="WhatsApp Video 2024-08-26 at 12.52.11.mp4" type="video/mp4">
             Seu navegador não suporta o elemento de vídeo.
         </video>
-
     </div>
-
-
-
 
     <p id="contador">Carregando...</p>
 
     <div id="mensagem">
         <h1>Para Meu Amor Infinito</h1>
         <p>Desde o dia em que nossos caminhos se cruzaram, cada momento tem sido uma bela aventura ao seu lado. Este contador é mais do que números; é uma celebração de cada segundo, cada sorriso e cada sonho que compartilhamos.</p>
-        <p>Enquanto assistimos a este vídeo, lembramos dos momentos que tornaram nossa história tão especial. A cada dia que passa, nosso amor se fortalece e cresce, e cada instante vivido juntos é uma prova de que somos feitos um para o outro.</p>
-        <p>Obrigado por estar sempre ao meu lado, por tornar cada dia mais brilhante e por ser a pessoa incrível que você é. Vamos continuar criando memórias inesquecíveis, e que nosso amor continue a florescer por muitos e muitos anos!</p>
-        <p>Com todo o meu amor,</p>
-        <p>Alexandre</p>
     </div>
 
     <audio id="audio-player" autoplay loop>
@@ -35,38 +71,140 @@
         Seu navegador não suporta o elemento de áudio.
     </audio>
 
+    <canvas id="canvas"></canvas>
+
     <script>
+        const dataInicio = new Date('2023-10-02T00:00:00');
+        const aniversario = new Date(dataInicio);
+        aniversario.setFullYear(aniversario.getFullYear() + 1);
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-const dataInicio = new Date('2023-10-02T00:00:00');
+        let fireworksEnabled = false;
+        const particles = [];
+        let firstYear = false;
 
-function atualizarContador() {
-    const agora = new Date();
-    const tempoPassado = agora - dataInicio;
+        function atualizarContador() {
+            const agora = new Date();
+            const tempoPassado = agora - dataInicio;
 
-    const segundosTotais = Math.floor(tempoPassado / 1000);
-    const segundos = segundosTotais % 60;
-    const minutosTotais = Math.floor(segundosTotais / 60);
-    const minutos = minutosTotais % 60;
-    const horasTotais = Math.floor(minutosTotais / 60);
-    const horas = horasTotais % 24;
-    const diasTotais = Math.floor(horasTotais / 24);
-    const anos = Math.floor(diasTotais / 365);
+            const anos = agora.getFullYear() - dataInicio.getFullYear();
+            const meses = agora.getMonth() - dataInicio.getMonth() + (anos > 0 ? 12 : 0);
+            const dias = agora.getDate() - dataInicio.getDate();
 
-    // Calculando os dias no mês atual
-    const inicioDoMesAtual = new Date(agora.getFullYear(), agora.getMonth(), 1);
-    const diasNoMesAtual = Math.floor((agora - inicioDoMesAtual) / (1000 * 60 * 60 * 24));
+            let mesesCorrigidos = meses;
+            let diasCorrigidos = dias;
 
-    // Calculando os meses e dias desde o início
-    const dias = diasTotais % 365;
-    const meses = Math.floor(dias / 30);
+            if (dias < 0) {
+                mesesCorrigidos--;
+                const lastMonth = new Date(agora.getFullYear(), agora.getMonth(), 0);
+                diasCorrigidos += lastMonth.getDate();
+            }
 
-    document.getElementById('contador').textContent = 
-        `${anos} anos, ${meses} meses, ${diasNoMesAtual} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
-}
+            const horas = agora.getHours() - dataInicio.getHours();
+            const minutos = agora.getMinutes() - dataInicio.getMinutes();
+            const segundos = agora.getSeconds() - dataInicio.getSeconds();
 
-setInterval(atualizarContador, 1000);
-atualizarContador();
+            let horasCorrigidas = horas;
+            let minutosCorrigidos = minutos;
+            let segundosCorrigidos = segundos;
 
+            if (segundos < 0) {
+                minutosCorrigidos--;
+                segundosCorrigidos += 60;
+            }
+            if (minutosCorrigidos < 0) {
+                horasCorrigidas--;
+                minutosCorrigidos += 60;
+            }
+            if (horasCorrigidas < 0) {
+                horasCorrigidas += 24;
+            }
+
+            if (agora < aniversario) {
+                document.getElementById('contador').textContent = 
+                    `${mesesCorrigidos} mês${mesesCorrigidos !== 1 ? 'es' : ''}, ${diasCorrigidos} dia${diasCorrigidos !== 1 ? 's' : ''}, ${horasCorrigidas} hora${horasCorrigidas !== 1 ? 's' : ''}, ${minutosCorrigidos} minuto${minutosCorrigidos !== 1 ? 's' : ''} e ${segundosCorrigidos} segundo${segundosCorrigidos !== 1 ? 's' : ''}`;
+            } else {
+                document.getElementById('contador').textContent = 
+                    `1 ano, 0 meses, 0 dias, 0 horas, 0 minutos e 0 segundos`;
+                if (!firstYear) {
+                    firstYear = true;
+                    fireworksEnabled = true;
+                    iniciarFogos();
+                    mudarMusica();
+                    atualizarMensagem();
+                }
+            }
+        }
+
+        function mudarMusica() {
+            const audioPlayer = document.getElementById('audio-player');
+            audioPlayer.src = 'a.mp3'; // Substitua pelo caminho da nova música
+            audioPlayer.play();
+        }
+
+        function atualizarMensagem() {
+            const mensagemDiv = document.getElementById('mensagem');
+            mensagemDiv.innerHTML = `
+                <h1>Estamos a 1 ano juntos!</h1>
+                <p>O tempo passou tão rápido, e cada momento ao seu lado tem sido uma alegria. A cada dia, nosso amor se fortalece e nos torna mais próximos. Vamos continuar criando memórias inesquecíveis juntos!</p>
+            `;
+        }
+
+        function iniciarFogos() {
+            canvas.style.display = 'block';
+            setInterval(() => {
+                criarFogoDeArtificio();
+            }, 1000);
+        }
+
+        function criarFogoDeArtificio() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            for (let i = 0; i < 200; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 3 + 1;
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    alpha: 1,
+                    color: color,
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, index) => {
+                ctx.fillStyle = particle.color;
+                ctx.globalAlpha = particle.alpha;
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, 7, 0, Math.PI * 2);
+                ctx.fill();
+
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                particle.alpha -= 0.02;
+
+                if (particle.alpha <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+        animate();
     </script>
 </body>
 </html>
